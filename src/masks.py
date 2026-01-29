@@ -1,6 +1,6 @@
 ###############
 def get_mask_card_number(card_number: str) -> str:
-    """Функция возвращает маску номера карты"""
+    """The function returns the mask of the card number"""
     result = ""
     if len(card_number) != 16 or card_number.isdigit() is False:
         result = "Введен некорректный номер карты"
@@ -13,7 +13,7 @@ def get_mask_card_number(card_number: str) -> str:
 
 
 def get_mask_account(account_number: str) -> str:
-    """Функция возвращает маску номера счета"""
+    """The function returns the mask of the account number"""
     result = ""
     if len(account_number) != 20 or account_number.isdigit() is False:
         result = "Введен некорректный номер счета"

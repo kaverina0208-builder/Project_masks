@@ -4,7 +4,7 @@ from .masks import get_mask_account, get_mask_card_number
 
 
 def mask_account_card(srting_info: str) -> str:
-    """Функция возвращает маску номера карты или маску номера счета"""
+    """The function returns a card number mask or an account number mask"""
     result = ""
     string_name = ""
     string_number = ""
@@ -29,7 +29,7 @@ print(mask_account_card(srting_info="MasterCard 7158300734726758"))
 
 
 def get_date(date_string_info: str) -> str:
-    """Функция возвращаяет строку с датой в нужном формате"""
+    """The function returns a string with the date in the required format"""
     result = ""
     match = re.search(r"(\d{4})-(\d{2})-(\d{2})", date_string_info)
     if match:
