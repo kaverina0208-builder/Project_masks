@@ -1,41 +1,54 @@
 import re
+from calendar import month
+
+from mypy.dmypy.client import stop_parser
 
 from src.masks import get_mask_account, get_mask_card_number
 
 
-def mask_account_card(srting_info: str) -> str:
+def mask_account_card(string_info: str) -> str:
     """The function returns a card number mask or an account number mask"""
     result = ""
     string_name = ""
     string_number = ""
-    if re.search("[а-яА-Я]", srting_info[0]):
-        for symbol in srting_info:
+    if re.search("[а-яА-Я]", string_info[0]):
+        for symbol in string_info:
             if symbol.isalpha() or symbol == " ":
                 string_name += symbol
             if symbol.isdigit():
-                string_number += symbol
-        result = string_name + get_mask_account(string_number)
-    if re.search("[a-zA-Z]", srting_info[0]):
-        for symbol in srting_info:
+                string_number = string_info[string_info.index(symbol):]
+                get_mask_account(string_number)
+                result = string_name + get_mask_account(string_number)
+                break
+    if re.search("[a-zA-Z]", string_info[0]):
+        for symbol in string_info:
             if symbol.isalpha() or symbol == " ":
                 string_name += symbol
             if symbol.isdigit():
-                string_number += symbol
-        result = string_name + get_mask_card_number(string_number)
+                string_number = string_info[string_info.index(symbol):]
+                get_mask_card_number(string_number)
+                result = string_name + get_mask_card_number(string_number)
+                break
     return result
 
 
-print(mask_account_card(srting_info="MasterCard 7158300734726758"))
+print(mask_account_card(string_info="Visa Platinum 70007922896kkk361"))
 
 
 def get_date(date_string_info: str) -> str:
     """The function returns a string with the date in the required format"""
     result = ""
-    match = re.search(r"(\d{4})-(\d{2})-(\d{2})", date_string_info)
+    match = re.search(r"(\d{2,4})-(\d{2})-(\d{2,4})", date_string_info)
+    # r"(\d{4})(-|\.)?(\d{2})(-|\.)?(\d{2})" (\d{2,4})\W?(\d{2})\W?(\d{2,4})
     if match:
         year, month, day = match.groups()
-    result = f"{day}.{month}.{year}"
+        if len(str(year)) == 4:
+            result = f"{day}.{month}.{year}"
+        else:
+            result = f"{year}.{month}.{day}"
+    else:
+        result = "Корректная дата отсутствует"
     return result
 
 
-print(get_date(date_string_info="2024-03-11T02:26:18.671407"))
+print(get_date(date_string_info="1999-02-0 T02:26:18.671407"))

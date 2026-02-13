@@ -9,7 +9,7 @@ def get_mask_card_number(card_number: str) -> str:
     return result
 
 
-print(get_mask_card_number(card_number="1234567891231234"))
+# print(get_mask_card_number(card_number="1234567891231234"))
 
 
 def get_mask_account(account_number: str) -> str:
@@ -22,4 +22,4 @@ def get_mask_account(account_number: str) -> str:
     return result
 
 
-print(get_mask_account(account_number="12345678912345678912"))
+# print(get_mask_account(account_number="12345678912345678912"))
