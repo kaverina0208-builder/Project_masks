@@ -1,4 +1,5 @@
 import pytest
+from typing import Any
 from src.masks import get_mask_card_number, get_mask_account
 
 
@@ -11,7 +12,7 @@ from src.masks import get_mask_card_number, get_mask_account
         ("asdfghjkloiuy900", "Введен некорректный номер карты"),
     ],
 )
-def test_get_mask_card_number(number, expected):
+def test_get_mask_card_number(number: str, expected: str) -> Any:
     assert get_mask_card_number(number) == expected
 
 
@@ -24,5 +25,5 @@ def test_get_mask_card_number(number, expected):
         ("asdfghjkloiuy900", "Введен некорректный номер счета"),
     ],
 )
-def test_get_mask_account(number, expected):
+def test_get_mask_account(number: str, expected: str) -> Any:
     assert get_mask_account(number) == expected

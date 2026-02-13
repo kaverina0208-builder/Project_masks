@@ -1,7 +1,4 @@
 import re
-from calendar import month
-
-from mypy.dmypy.client import stop_parser
 
 from src.masks import get_mask_account, get_mask_card_number
 
@@ -39,7 +36,6 @@ def get_date(date_string_info: str) -> str:
     """The function returns a string with the date in the required format"""
     result = ""
     match = re.search(r"(\d{2,4})-(\d{2})-(\d{2,4})", date_string_info)
-    # r"(\d{4})(-|\.)?(\d{2})(-|\.)?(\d{2})" (\d{2,4})\W?(\d{2})\W?(\d{2,4})
     if match:
         year, month, day = match.groups()
         if len(str(year)) == 4:
@@ -51,4 +47,4 @@ def get_date(date_string_info: str) -> str:
     return result
 
 
-print(get_date(date_string_info="1999-02-0 T02:26:18.671407"))
+print(get_date(date_string_info="2025-02-08T02:26:18.671407"))

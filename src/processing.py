@@ -5,6 +5,7 @@ accepted_list = [
     {"id": 615064591, "state": "CANCELED", "date": "2018-10-14T08:21:33.419441"},
 ]
 
+
 def filter_by_state(accepted_list: list, state: str = "EXECUTED") -> list:
     """The function returns a new list of dictionaries containing only those dictionaries whose key 'state'
     matches the specified value"""
